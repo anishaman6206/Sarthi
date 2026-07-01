@@ -2,11 +2,26 @@
 
 import { AnimatePresence } from "framer-motion";
 import { MessageCircle } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ChatPanel from "@/components/chat/ChatPanel";
 
 export default function ChatWindow(): JSX.Element {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  // Allow other UI to open the chat by dispatching a custom event:
+  // `window.dispatchEvent(new Event('open-sarthi-chat'))`.
+  // This keeps the floating button while letting page banners open the panel.
+  useEffect(() => {
+    const handler = (): void => setIsOpen(true);
+    if (typeof window !== "undefined") {
+      window.addEventListener("open-sarthi-chat", handler as EventListener);
+    }
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("open-sarthi-chat", handler as EventListener);
+      }
+    };
+  }, []);
 
   return (
     <>

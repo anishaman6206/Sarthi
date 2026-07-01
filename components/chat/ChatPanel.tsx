@@ -1,11 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { X, Send } from "lucide-react";
+import { X, Send, Trash2 } from "lucide-react";
+import { clearAllChats, backupAllChats, restoreAllChats, getStorageKey } from "@/components/chat/useChatStream";
 import {
   useCallback,
   useEffect,
   useRef,
+  useState,
   type ChangeEvent,
   type KeyboardEvent,
 } from "react";
@@ -13,8 +15,9 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { useUserStore } from "@/components/store/useUserStore";
 import { useChatContext } from "@/components/chat/ChatContext";
-import { useChatStream } from "@/components/chat/useChatStream";
+import { useChatStream, type Message } from "@/components/chat/useChatStream";
 import { CAREERS } from "@/lib/data/careers";
+import { usePathname } from "next/navigation";
 
 interface ChatPanelProps {
   open: boolean;
@@ -27,19 +30,31 @@ export default function ChatPanel({ open, onClose }: ChatPanelProps): JSX.Elemen
   const profile = useUserStore((state) => state.profile);
   const { stageTitle } = useChatContext();
 
-  const careerSlug = profile.chosenCareerSlug;
-  const career = careerSlug
-    ? CAREERS.find((c) => c.slug === careerSlug)
-    : undefined;
+  const rawCareerSlug = profile.chosenCareerSlug;
+  const pathname = usePathname();
 
-  const { messages, input, setInput, send, isStreaming, error } = useChatStream({
+  // Only attach career/roadmap context when the user is actually on a roadmap
+  // page (e.g. /roadmap/[slug]). When they navigate back to home, keep the
+  // chat in a global context so it doesn't reference the last-visited card.
+  const onRoadmapPage = typeof pathname === "string" && pathname.startsWith("/roadmap");
+  const careerSlug = onRoadmapPage ? rawCareerSlug : undefined;
+  const career = careerSlug ? CAREERS.find((c) => c.slug === careerSlug) : undefined;
+
+  const { messages, input, setInput, send, clearMessages, restoreMessages, isStreaming, error } = useChatStream({
     careerSlug,
-    stageTitle,
+    stageTitle: onRoadmapPage ? stageTitle : undefined,
     profile: profile as Record<string, unknown>,
   });
 
   const scrollRef = useRef<HTMLDivElement | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  const [toast, setToast] = useState<{
+    visible: boolean;
+    type: "context" | "all" | null;
+    backup?: Message[];
+    backupAll?: Record<string, Message[]>;
+    timerId?: number | null;
+  }>({ visible: false, type: null });
 
   useEffect(() => {
     if (!scrollRef.current) return;
@@ -77,7 +92,7 @@ export default function ChatPanel({ open, onClose }: ChatPanelProps): JSX.Elemen
 
   const subheader = career
     ? `Telling me about: ${career.title} - ${stageTitle ?? "overview"}`
-    : `Telling me about: your future - ${stageTitle ?? "overview"}`;
+    : `Telling me about: your future - ${onRoadmapPage ? stageTitle ?? "overview" : "general"}`;
 
   return (
     <div className="fixed inset-0 z-50">
@@ -110,6 +125,38 @@ export default function ChatPanel({ open, onClose }: ChatPanelProps): JSX.Elemen
             className="rounded-full p-2 transition hover:bg-white/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
           >
             <X className="h-5 w-5" aria-hidden />
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              const backup = messages.slice();
+              clearMessages();
+              const tid = window.setTimeout(() => setToast((t) => ({ ...t, visible: false })), 6000);
+              setToast({ visible: true, type: "context", backup, timerId: tid });
+            }}
+            aria-label="Clear chat history"
+            className="ml-2 rounded-full p-2 transition hover:bg-white/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+          >
+            <Trash2 className="h-5 w-5" aria-hidden />
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              // Backup all chat data then clear; provide undo via toast.
+              const backup = backupAllChats();
+              clearAllChats();
+              clearMessages();
+              setToast({
+                visible: true,
+                type: "all",
+                backupAll: backup,
+                timerId: window.setTimeout(() => setToast((t) => ({ ...t, visible: false })), 6000),
+              });
+            }}
+            aria-label="Clear all chat history"
+            className="ml-2 rounded-full px-3 py-1 text-xs font-medium bg-white/10 hover:bg-white/15"
+          >
+            Clear all
           </button>
         </header>
 
@@ -210,6 +257,36 @@ export default function ChatPanel({ open, onClose }: ChatPanelProps): JSX.Elemen
           </p>
         </footer>
       </motion.div>
+      {toast.visible ? (
+        <div className="fixed right-6 bottom-28 z-60">
+          <div className="flex items-center gap-3 rounded-lg bg-sarthi-ink/95 px-4 py-2 text-white shadow">
+            <span>
+              {toast.type === "all" ? "All chats cleared" : "Chat cleared"}
+            </span>
+            <button
+              type="button"
+              onClick={() => {
+                // Undo handler
+                if (toast.type === "context" && toast.backup) {
+                  restoreMessages(toast.backup);
+                }
+                if (toast.type === "all" && toast.backupAll) {
+                  restoreAllChats(toast.backupAll);
+                  // restore current context messages if present
+                  const key = getStorageKey({ careerSlug });
+                  const kmsgs = toast.backupAll[key];
+                  if (kmsgs) restoreMessages(kmsgs);
+                }
+                if (toast.timerId) window.clearTimeout(toast.timerId);
+                setToast({ visible: false, type: null });
+              }}
+              className="ml-2 rounded-md bg-white/10 px-2 py-1 text-xs"
+            >
+              Undo
+            </button>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

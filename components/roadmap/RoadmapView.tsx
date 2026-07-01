@@ -16,13 +16,23 @@ import {
 } from "@/components/chat/ChatContext";
 import {
   Bot,
+  Code2,
   Calculator,
   Landmark,
   Plane,
   Rocket,
+  Scale,
   Scissors,
   Shield,
   Stethoscope,
+  Database,
+  Hammer,
+  Cpu,
+  Home,
+  BookOpen,
+  Briefcase,
+  PenTool,
+  User,
 } from "lucide-react";
 
 const careerIconMap = {
@@ -34,6 +44,18 @@ const careerIconMap = {
   astronaut: Rocket,
   "civil-services-ias": Landmark,
   "chartered-accountant": Calculator,
+  lawyer: Scale,
+  "software-engineer": Code2,
+  "data-scientist": Database,
+  "mechanical-engineer": Hammer,
+  "electrical-engineer": Cpu,
+  "civil-engineer": Home,
+  architect: Landmark,
+  teacher: BookOpen,
+  nurse: Stethoscope,
+  "product-manager": Briefcase,
+  "ux-designer": PenTool,
+  dentist: User,
 } as const;
 
 const careerBadgeMap = {
@@ -45,6 +67,18 @@ const careerBadgeMap = {
   astronaut: "bg-indigo-400/20 text-indigo-100 border-indigo-300/30",
   "civil-services-ias": "bg-orange-400/20 text-orange-100 border-orange-300/30",
   "chartered-accountant": "bg-cyan-400/20 text-cyan-100 border-cyan-300/30",
+  lawyer: "bg-slate-400/20 text-slate-100 border-slate-300/30",
+  "software-engineer": "bg-blue-400/20 text-blue-100 border-blue-300/30",
+  "data-scientist": "bg-cyan-400/20 text-cyan-100 border-cyan-300/30",
+  "mechanical-engineer": "bg-amber-400/20 text-amber-100 border-amber-300/30",
+  "electrical-engineer": "bg-yellow-400/20 text-amber-900 border-yellow-300/30",
+  "civil-engineer": "bg-emerald-400/20 text-emerald-100 border-emerald-300/30",
+  architect: "bg-violet-400/20 text-violet-100 border-violet-300/30",
+  teacher: "bg-rose-400/20 text-rose-100 border-rose-300/30",
+  nurse: "bg-pink-400/20 text-pink-100 border-pink-300/30",
+  "product-manager": "bg-blue-600/20 text-blue-100 border-blue-500/30",
+  "ux-designer": "bg-fuchsia-400/20 text-fuchsia-100 border-fuchsia-300/30",
+  dentist: "bg-teal-400/20 text-teal-100 border-teal-300/30",
 } as const;
 
 interface RoadmapViewProps {
@@ -63,6 +97,7 @@ function RoadmapViewInner({ career }: RoadmapViewProps): JSX.Element {
   const { setStageTitle } = useChatContext();
   const CareerIcon = careerIconMap[career.slug as keyof typeof careerIconMap];
   const careerBadgeClasses = careerBadgeMap[career.slug as keyof typeof careerBadgeMap];
+  const SafeCareerIcon = CareerIcon ?? Code2;
 
   // Whenever the active stage changes, mirror its title into both the user
   // store (for persistence) and the ChatContext (for the AI panel header).
@@ -93,7 +128,7 @@ function RoadmapViewInner({ career }: RoadmapViewProps): JSX.Element {
               aria-hidden
               className={`inline-flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border backdrop-blur-md shadow-[0_8px_24px_rgba(0,0,0,0.25)] ${careerBadgeClasses}`}
             >
-              <CareerIcon className="h-8 w-8" />
+              <SafeCareerIcon className="h-8 w-8" />
             </span>
             <h1 className="font-display mt-3 text-4xl font-extrabold md:text-5xl">
               {career.title}

@@ -341,6 +341,215 @@ export const EXAMS: Exam[] = [
       "Mandatory for pilots operating radiotelephony on Indian-registered aircraft. Conducted by DoT in Delhi / Mumbai / Kolkata / Chennai.",
     official_url: "https://wpc.dot.gov.in",
   },
+
+  // ── Law (CLAT / AILET) ───────────────────────────────────────────────────
+  {
+    slug: "clat",
+    name: "CLAT (Common Law Admission Test)",
+    conducting_body: "Consortium of National Law Universities",
+    frequency: "Once a year (December)",
+    attempts_allowed: "No limit",
+    age_limit: "No upper age limit (must have passed Class 12 for UG)",
+    mode: "Online",
+    difficulty: "Hard",
+    description:
+      "Gateway to 26 National Law Universities across India for BA LLB / BBA LLB / LLM. Five sections: English, Current Affairs, Legal Reasoning, Logical Reasoning, Quantitative Techniques.",
+    official_url: "https://consortiumofnlus.ac.in",
+  },
+  {
+    slug: "ailet",
+    name: "AILET (All India Law Entrance Test)",
+    conducting_body: "National Law University, Delhi",
+    frequency: "Once a year (December)",
+    attempts_allowed: "No limit",
+    age_limit: "No upper age limit",
+    mode: "Offline",
+    difficulty: "Hard",
+    description:
+      "NLU Delhi's separate entrance exam for BA LLB / LLM. Tests English, GK, Legal Aptitude, Reasoning, and Mathematics.",
+    official_url: "https://nationallawuniversitydelhi.in",
+  },
+  {
+    slug: "lsat-india",
+    name: "LSAT India",
+    conducting_body: "Law School Admission Council (LSAC)",
+    frequency: "Once a year (May)",
+    attempts_allowed: "No limit",
+    age_limit: "No upper age limit",
+    mode: "Online",
+    difficulty: "Hard",
+    description:
+      "Standardised test accepted by private law schools (Symbiosis, Jindal, Amity) for 5-year integrated law admissions.",
+    official_url: "https://www.lsac.org",
+  },
+
+  // ── Architecture (NATA / JEE Paper 2) ────────────────────────────────────
+  {
+    slug: "nata",
+    name: "NATA (National Aptitude Test in Architecture)",
+    conducting_body: "Council of Architecture (CoA)",
+    frequency: "Twice a year (April & July)",
+    attempts_allowed: "No limit",
+    age_limit: "Must have passed Class 12 (no upper limit)",
+    mode: "Online",
+    difficulty: "Hard",
+    description:
+      "Drawing + aesthetic sensitivity + mathematical aptitude test for B.Arch admissions across India.",
+    official_url: "https://www.nata.in",
+  },
+  {
+    slug: "jee-main-paper-2",
+    name: "JEE Main Paper 2 (B.Arch / B.Planning)",
+    conducting_body: "National Testing Agency (NTA)",
+    frequency: "Twice a year (January & April)",
+    attempts_allowed: "3 consecutive attempts",
+    age_limit: "No upper age limit",
+    mode: "Online",
+    difficulty: "Hard",
+    description:
+      "JEE Main Paper 2 is the entry to B.Arch / B.Planning at IITs, NITs, SPAs and IIA-affiliated colleges. Has Maths + Aptitude + Drawing.",
+    official_url: "https://jeemain.nta.nic.in",
+  },
+
+  // ── Teaching (CTET / State TETs / UGC NET) ───────────────────────────────
+  {
+    slug: "ctet",
+    name: "CTET (Central Teacher Eligibility Test)",
+    conducting_body: "Central Board of Secondary Education (CBSE)",
+    frequency: "Twice a year",
+    attempts_allowed: "No limit",
+    age_limit: "18+ (no upper age limit)",
+    mode: "Online",
+    difficulty: "Moderate",
+    description:
+      "Mandatory eligibility for KVS / NVS / Army schools and many private schools. Two papers: Paper 1 (Class 1–5), Paper 2 (Class 6–8).",
+    official_url: "https://ctet.nic.in",
+  },
+  {
+    slug: "state-tets",
+    name: "State Teacher Eligibility Tests (UPTET, REET, HTET etc.)",
+    conducting_body: "Respective State Education Boards",
+    frequency: "Once a year (per state)",
+    attempts_allowed: "Varies by state",
+    age_limit: "18 to 35 (relaxed for reserved categories)",
+    mode: "Online",
+    difficulty: "Moderate",
+    description:
+      "State-level TETs required for appointment in state government schools. Pattern similar to CTET with state-specific GK.",
+    official_url: "https://www.cbse.gov.in",
+  },
+  {
+    slug: "ugc-net",
+    name: "UGC NET (National Eligibility Test)",
+    conducting_body: "National Testing Agency (NTA)",
+    frequency: "Twice a year (June & December)",
+    attempts_allowed: "No limit",
+    age_limit: "No upper age limit (JRF — 30 years)",
+    mode: "Online",
+    difficulty: "Hard",
+    description:
+      "Eligibility for Assistant Professor and Junior Research Fellowship in Indian universities and colleges. Two papers of objective type.",
+    official_url: "https://ugcnet.nta.ac.in",
+  },
+
+  // ── Nursing (NORCET) ─────────────────────────────────────────────────────
+  {
+    slug: "aiims-norcet",
+    name: "AIIMS NORCET (Nursing Officer Recruitment)",
+    conducting_body: "AIIMS New Delhi",
+    frequency: "Once a year",
+    attempts_allowed: "No limit",
+    age_limit: "18 to 30 (relaxed for reserved categories)",
+    mode: "Online",
+    difficulty: "Moderate",
+    description:
+      "AIIMS Nursing Officer Recruitment Common Eligibility Test — gateway to nursing officer posts across AIIMS hospitals in India.",
+    official_url: "https://www.aiims.edu",
+  },
+
+  // ── Dental (NEET-MDS) ─────────────────────────────────────────────────────
+  {
+    slug: "neet-mds",
+    name: "NEET-MDS",
+    conducting_body: "National Board of Examinations (NBE)",
+    frequency: "Once a year",
+    attempts_allowed: "No limit",
+    age_limit: "No upper age limit",
+    mode: "Online",
+    difficulty: "Very Hard",
+    description:
+      "Master of Dental Surgery entrance — required for MDS seats at government and private dental colleges across India.",
+    official_url: "https://natboard.edu.in",
+  },
+
+  // ── Management Consulting (CAT / XAT / GMAT / SNAP) ──────────────────────
+  {
+    slug: "cat",
+    name: "CAT (Common Admission Test)",
+    conducting_body: "Indian Institutes of Management (IIMs)",
+    frequency: "Once a year (November)",
+    attempts_allowed: "No limit",
+    age_limit: "No upper age limit (must hold a bachelor's degree)",
+    mode: "Online",
+    difficulty: "Very Hard",
+    description:
+      "India's premier MBA entrance for IIMs and 1000+ B-schools. Three sections: VARC, DILR, Quant. Top consulting firms (McKinsey, BCG, Bain) recruit heavily from IIM-A/B/C.",
+    official_url: "https://iimcat.ac.in",
+  },
+  {
+    slug: "xat",
+    name: "XAT (Xavier Aptitude Test)",
+    conducting_body: "XLRI Jamshedpur",
+    frequency: "Once a year (January)",
+    attempts_allowed: "No limit",
+    age_limit: "No upper age limit",
+    mode: "Online",
+    difficulty: "Hard",
+    description:
+      "Gateway to XLRI and 700+ associate B-schools. Includes Decision Making section unique to XAT.",
+    official_url: "https://xatonline.in",
+  },
+  {
+    slug: "gmat",
+    name: "GMAT",
+    conducting_body: "Graduate Management Admission Council",
+    frequency: "Multiple sittings a year",
+    attempts_allowed: "No limit (can be retaken multiple times)",
+    age_limit: "No upper age limit",
+    mode: "Online",
+    difficulty: "Hard",
+    description:
+      "Standardised MBA entrance for ISB (1-year PGP) and global MBA programs. Accepted by 7,000+ programs worldwide.",
+    official_url: "https://www.mba.com",
+  },
+  {
+    slug: "snap",
+    name: "SNAP (Symbiosis National Aptitude Test)",
+    conducting_body: "Symbiosis International University",
+    frequency: "Once a year (December)",
+    attempts_allowed: "No limit",
+    age_limit: "No upper age limit",
+    mode: "Online",
+    difficulty: "Moderate",
+    description:
+      "SNAP opens Symbiosis institutes (SIBM Pune, SCMHRD) — popular for marketing, operations, and consulting careers.",
+    official_url: "https://www.snaptest.org",
+  },
+
+  // ── Space / Astronaut supplementary ──────────────────────────────────────
+  {
+    slug: "isro-icrb",
+    name: "ISRO ICRB (Scientist/Engineer 'SC')",
+    conducting_body: "ISRO Centralised Recruitment Board",
+    frequency: "When vacancies are notified (typically once a year)",
+    attempts_allowed: "No limit (subject to age)",
+    age_limit: "28 years (relaxed for SC/ST)",
+    mode: "Online",
+    difficulty: "Hard",
+    description:
+      "Recruitment test for Scientist/Engineer 'SC' posts at ISRO centres. Multi-disciplinary: ECE, ME, CSE, EE, Physics, etc.",
+    official_url: "https://www.isro.gov.in/Careers.html",
+  },
 ];
 
 export const CAREER_EXAMS: Record<Career["slug"], string[]> = {
@@ -349,9 +558,22 @@ export const CAREER_EXAMS: Record<Career["slug"], string[]> = {
   "doctor-mbbs": ["neet-ug", "neet-pg"],
   "fashion-designer": ["nift-entrance", "nid-dat", "uceed", "ceed"],
   "robotics-engineer": ["jee-main", "jee-advanced", "bitsat"],
-  astronaut: ["jee-main", "jee-advanced", "iist-admission", "bitsat"],
+  astronaut: ["jee-main", "jee-advanced", "iist-admission", "bitsat", "isro-icrb"],
   "civil-services-ias": ["upsc-cse", "upsc-capf", "cds"],
   "chartered-accountant": ["ca-foundation", "ca-intermediate", "ca-final", "cma-inter"],
+  lawyer: ["clat", "ailet", "lsat-india"],
+  "software-engineer": ["jee-main", "jee-advanced", "bitsat", "viteee", "cuet-ug"],
+  "data-scientist": ["jee-main", "jee-advanced"],
+  "mechanical-engineer": ["jee-main", "jee-advanced"],
+  "electrical-engineer": ["jee-main", "jee-advanced"],
+  "civil-engineer": ["jee-main", "jee-advanced"],
+  architect: ["nata", "jee-main-paper-2", "uceed"],
+  teacher: ["ctet", "state-tets", "ugc-net", "cuet-ug"],
+  nurse: ["neet-ug", "aiims-norcet"],
+  "product-manager": ["cat", "xat", "gmat"],
+  "ux-designer": ["uceed"],
+  dentist: ["neet-ug", "neet-mds"],
+  consultant: ["cat", "xat", "gmat", "snap"],
 };
 
 export const getExamsForCareer = (careerSlug: Career["slug"]): Exam[] => {

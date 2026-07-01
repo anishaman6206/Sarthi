@@ -4,14 +4,24 @@ import { motion } from "framer-motion";
 import {
   ArrowRight,
   Bot,
+  Code2,
   Calculator,
   Flame,
   Landmark,
   Plane,
   Rocket,
   Scissors,
+  Scale,
   Shield,
   Stethoscope,
+  Database,
+  Hammer,
+  Cpu,
+  Home,
+  BookOpen,
+  Briefcase,
+  PenTool,
+  User,
 } from "lucide-react";
 import type { Career } from "@/lib/data/careers";
 
@@ -24,6 +34,19 @@ const careerIconMap = {
   astronaut: Rocket,
   "civil-services-ias": Landmark,
   "chartered-accountant": Calculator,
+  lawyer: Scale,
+  "software-engineer": Code2,
+  "data-scientist": Database,
+  "mechanical-engineer": Hammer,
+  "electrical-engineer": Cpu,
+  "civil-engineer": Home,
+  architect: Landmark,
+  teacher: BookOpen,
+  nurse: Stethoscope,
+  "product-manager": Briefcase,
+  "ux-designer": PenTool,
+  dentist: User,
+  consultant: Briefcase,
 } as const;
 
 const careerBadgeMap = {
@@ -35,6 +58,19 @@ const careerBadgeMap = {
   astronaut: "bg-indigo-400/20 text-indigo-100 border-indigo-300/30",
   "civil-services-ias": "bg-orange-400/20 text-orange-100 border-orange-300/30",
   "chartered-accountant": "bg-cyan-400/20 text-cyan-100 border-cyan-300/30",
+  lawyer: "bg-slate-400/20 text-slate-100 border-slate-300/30",
+  "software-engineer": "bg-blue-400/20 text-blue-100 border-blue-300/30",
+  "data-scientist": "bg-cyan-400/20 text-cyan-100 border-cyan-300/30",
+  "mechanical-engineer": "bg-amber-400/20 text-amber-100 border-amber-300/30",
+  "electrical-engineer": "bg-yellow-400/20 text-amber-900 border-yellow-300/30",
+  "civil-engineer": "bg-emerald-400/20 text-emerald-100 border-emerald-300/30",
+  architect: "bg-violet-400/20 text-violet-100 border-violet-300/30",
+  teacher: "bg-rose-400/20 text-rose-100 border-rose-300/30",
+  nurse: "bg-pink-400/20 text-pink-100 border-pink-300/30",
+  "product-manager": "bg-blue-600/20 text-blue-100 border-blue-500/30",
+  "ux-designer": "bg-fuchsia-400/20 text-fuchsia-100 border-fuchsia-300/30",
+  dentist: "bg-teal-400/20 text-teal-100 border-teal-300/30",
+  consultant: "bg-slate-700/20 text-slate-100 border-slate-300/30",
 } as const;
 
 interface CareerCardProps {
@@ -46,6 +82,7 @@ interface CareerCardProps {
 export default function CareerCard({ career, onSelect, index }: CareerCardProps) {
   const CareerIcon = careerIconMap[career.slug as keyof typeof careerIconMap];
   const badgeClasses = careerBadgeMap[career.slug as keyof typeof careerBadgeMap];
+  const SafeCareerIcon = CareerIcon ?? Code2;
 
   return (
     <motion.button
@@ -101,7 +138,7 @@ export default function CareerCard({ career, onSelect, index }: CareerCardProps)
           aria-hidden
           className={`absolute left-1/2 top-1/2 inline-flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-2xl border backdrop-blur-md shadow-[0_8px_24px_rgba(0,0,0,0.35)] ${badgeClasses}`}
         >
-          <CareerIcon className="h-7 w-7" />
+          <SafeCareerIcon className="h-7 w-7" />
         </span>
         <h3 className="font-display relative mt-2 text-2xl font-bold leading-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.75)]">
           {career.title}

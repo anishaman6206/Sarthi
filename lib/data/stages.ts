@@ -145,6 +145,15 @@ export const STAGES_BY_CAREER: StageMap = {
     },
     {
       stage_order: 4,
+      stage_type: "colleges",
+      title: "Flying schools & academies",
+      subtitle: "DGCA-approved FTOs and programs",
+      description:
+        "See top flying training organisations and programmes for the CPL pathway. Click a college to view programs, duration, and fees.",
+      metadata: {},
+    },
+    {
+      stage_order: 5,
       stage_type: "career_outlook",
       title: "Type Rating & Airline Placement",
       subtitle: "Get on a cockpit roster",
@@ -434,6 +443,102 @@ export const STAGES_BY_CAREER: StageMap = {
         mid_career_salary_inr: 1500000,
         top_labels: ["Sabyasachi", "Manish Malhotra", "Anita Dongre", "Rohit Bal"],
         showcases: ["Lakmé Fashion Week", "FDCI", "India Runway Week"],
+      } satisfies TextHighlightStageMetadata,
+    },
+  ],
+  "consultant": [
+    {
+      stage_order: 1,
+      stage_type: "subjects",
+      title: "Class 11–12: any stream, 80%+",
+      subtitle: "Analytical foundations",
+      description:
+        "Consulting hires come from diverse streams — maths, economics, commerce, or engineering. Build analytical thinking, clear writing, and structured problem solving. Top consulting firms expect 80%+ in Class 12 from premier schools.",
+      metadata: {
+        required_subjects: ["Maths", "Economics", "English"],
+        min_pct_class12: 80,
+        stream: "Any (PCM / Commerce / Humanities)",
+        extra: "Start reading business newspapers: Mint, Economic Times, Business Standard.",
+      } satisfies SubjectStageMetadata,
+    },
+    {
+      stage_order: 2,
+      stage_type: "exams",
+      title: "CAT / XAT / GMAT",
+      subtitle: "The gateway exams for top MBA programs",
+      description:
+        "For management consulting, a top MBA is the conventional route. CAT (IIMs), XAT (XLRI), SNAP (Symbiosis), and GMAT (ISB / foreign MBAs) are the key exams. IIM Ahmedabad, Bangalore, Calcutta, and XLRI take the bulk of MBB / Big-4 consultants.",
+      metadata: {
+        exams: [
+          {
+            name: "CAT (Common Admission Test)",
+            conducting_body: "Indian Institutes of Management (IIMs)",
+            frequency: "Once a year (November)",
+            age_limit: "No upper age limit (must hold a bachelor's degree)",
+            attempts: "No limit",
+            application_url: "https://iimcat.ac.in",
+          },
+          {
+            name: "XAT (Xavier Aptitude Test)",
+            conducting_body: "XLRI Jamshedpur",
+            frequency: "Once a year (January)",
+            age_limit: "No upper age limit",
+            attempts: "No limit",
+            application_url: "https://xatonline.in",
+          },
+          {
+            name: "GMAT",
+            conducting_body: "Graduate Management Admission Council",
+            frequency: "Multiple sittings a year",
+            age_limit: "No upper age limit",
+            attempts: "No limit (can be taken multiple times)",
+            application_url: "https://www.mba.com",
+          },
+        ],
+      } satisfies ExamStageMetadata,
+    },
+    {
+      stage_order: 3,
+      stage_type: "colleges",
+      title: "Top MBA / Consulting Schools",
+      subtitle: "IIMs, XLRI, ISB, FMS, IIFT",
+      description:
+        "IIM Ahmedabad, Bangalore, Calcutta, Lucknow, and XLRI Jamshedpur are the primary feeders into McKinsey, BCG, Bain, AT Kearney, and the Big 4. ISB Hyderabad (1-year PGP) is preferred by candidates with 4+ years of work experience.",
+      metadata: {
+        top_colleges: ["IIM Ahmedabad", "IIM Bangalore", "IIM Calcutta", "XLRI Jamshedpur", "ISB Hyderabad", "FMS Delhi"],
+        degree_awarded: "PGP / MBA",
+      } satisfies CollegeStageMetadata,
+    },
+    {
+      stage_order: 4,
+      stage_type: "skills",
+      title: "Case Interview Prep & Frameworks",
+      subtitle: "Master the consulting toolkit",
+      description:
+        "Practice market-sizing, profitability, and M&A cases. Learn the MECE principle, profit-tree frameworks, and Pyramid Principle for structuring. Tools: Excel, PowerPoint/Google Slides, Tableau, basic SQL.",
+      metadata: {
+        skills: ["Case structuring", "Market sizing", "Profitability analysis", "Excel modelling", "Slide design", "Stakeholder management"],
+        frameworks: ["MECE", "Pyramid Principle", "Porter's Five Forces", "4Cs / 4Ps"],
+        prep_books: ["Case in Point — Marc Cosentino", "Case Interview Secrets — Victor Cheng"],
+      } satisfies SkillsStageMetadata,
+    },
+    {
+      stage_order: 5,
+      stage_type: "career_outlook",
+      title: "Consultant → Manager → Partner",
+      subtitle: "MBB, Big 4, boutique firms",
+      description:
+        "Top consulting firms (McKinsey, BCG, Bain) hire at ₹25–35 LPA at associate / consultant level and ₹50 LPA–1 Cr at partner level. Many consultants exit to senior strategy, product, or COO roles at Fortune 500 companies after 4–6 years.",
+      metadata: {
+        highlights: [
+          "MBB entry (post-MBA): ₹25–35 LPA, fast-track to ₹50 LPA+ at manager level",
+          "Big 4 strategy (ATK, EY-Parthenon, PwC Strategy&, KPMG): ₹18–28 LPA entry",
+          "Partner / Principal: ₹1 Cr – ₹5 Cr+ including performance bonus and carry",
+          "Exit options: VP Strategy, CPO, COO, founder of startups",
+        ],
+        entry_salary_inr: 2500000,
+        partner_salary_inr: 10000000,
+        top_firms: ["McKinsey & Company", "BCG", "Bain & Company", "AT Kearney", "EY-Parthenon", "Strategy& (PwC)"],
       } satisfies TextHighlightStageMetadata,
     },
   ],
@@ -822,7 +927,820 @@ export const STAGES_BY_CAREER: StageMap = {
       } satisfies TextHighlightStageMetadata,
     },
   ],
-};
+  lawyer: [
+    {
+      stage_order: 1,
+      stage_type: "subjects",
+      title: "Class 11–12 Any Stream",
+      subtitle: "Reading, writing, reasoning",
+      description:
+        "Law has no mandatory stream requirement. Humanities helps, but students from Science or Commerce can also pursue it if they build strong reading, writing, and argumentation skills early.",
+      metadata: {
+        required_subjects: ["English", "Political Science", "History", "Logical Reasoning"],
+        min_pct_class12: 50,
+        stream: "Any stream",
+        extra: "Start reading editorials, judgments, and basic constitutional law examples.",
+      } satisfies SubjectStageMetadata,
+    },
+    {
+      stage_order: 2,
+      stage_type: "exams",
+      title: "CLAT / AILET / Law Aptitude Tests",
+      subtitle: "Entry to NLUs and top law schools",
+      description:
+        "For the 5-year law route, CLAT is the main gateway to NLUs, while AILET opens NLU Delhi. Some private universities also use their own law aptitude tests or accept scores from LSAT-style assessments.",
+      metadata: {
+        exams: [
+          {
+            name: "CLAT (Common Law Admission Test)",
+            conducting_body: "Consortium of National Law Universities",
+            frequency: "Once a year",
+            age_limit: "No upper age limit",
+            attempts: "No limit",
+            application_url: "https://consortiumofnlus.ac.in",
+          },
+          {
+            name: "AILET (All India Law Entrance Test)",
+            conducting_body: "National Law University, Delhi",
+            frequency: "Once a year",
+            age_limit: "No upper age limit",
+            attempts: "No limit",
+            application_url: "https://nationallawuniversitydelhi.in",
+          },
+          {
+            name: "Law School Entrance Tests (private universities)",
+            conducting_body: "Individual universities",
+            frequency: "Once a year / university-specific",
+            age_limit: "Varies by institute",
+            attempts: "Varies by institute",
+            application_url: "https://www.lsac.org",
+          },
+        ],
+      } satisfies ExamStageMetadata,
+    },
+    {
+      stage_order: 3,
+      stage_type: "colleges",
+      title: "Top Law Schools",
+      subtitle: "NLUs and strong private options",
+      description:
+        "The National Law Universities dominate placements, with NLSIU, NALSAR, and NLU Delhi at the top. Strong private options like Symbiosis Law School also offer broad exposure and good recruiter access.",
+      metadata: {
+        top_colleges: ["NLSIU Bengaluru", "NALSAR Hyderabad", "NLU Delhi", "WBNUJS Kolkata", "Symbiosis Law School Pune"],
+        degree_awarded: "BA LLB (Hons) / 5-year integrated law degree",
+      } satisfies CollegeStageMetadata,
+    },
+    {
+      stage_order: 4,
+      stage_type: "skills",
+      title: "Mooting, Drafting, Research",
+      subtitle: "Core law-school toolkit",
+      description:
+        "Build legal research, drafting, public speaking, negotiation, and client interviewing. Moot courts, internships, and reading case law are the fastest way to sharpen legal instincts.",
+      metadata: {
+        skills: ["Legal research", "Drafting", "Moot courts", "Argumentation", "Negotiation", "Case briefing", "Client communication"],
+        internships: ["Law firms", "High Court chambers", "Policy think tanks", "Legal aid clinics"],
+      } satisfies SkillsStageMetadata,
+    },
+    {
+      stage_order: 5,
+      stage_type: "career_outlook",
+      title: "Litigation, Corporate, Judiciary",
+      subtitle: "Courtroom or boardroom",
+      description:
+        "Law graduates can move into litigation, corporate law, public policy, legal tech, or judicial services. Strong NLUs can start at ₹8–20 LPA in top firms, while litigation grows with practice and reputation.",
+      metadata: {
+        highlights: [
+          "Entry roles: associate, researcher, legal analyst, in-house counsel",
+          "Top law-firm packages: ₹8–20 LPA",
+          "Litigation and judicial services offer long-term independence and influence",
+          "Alternative paths: policy, academia, and legal-tech startups",
+        ],
+        entry_salary_inr: 800000,
+        top_firm_salary_inr: 2000000,
+        alternate_tracks: ["Litigation", "Corporate law", "Judiciary", "Policy", "Legal tech"],
+      } satisfies TextHighlightStageMetadata,
+    },
+  ],
+  "software-engineer": [
+    {
+      stage_order: 1,
+      stage_type: "subjects",
+      title: "Class 11–12 PCM + CS",
+      subtitle: "Math and logic first",
+      description:
+        "Software engineering starts with strong PCM fundamentals and early coding practice. Students should aim for clear problem-solving habits, plus Python, C++, or Java basics before college.",
+      metadata: {
+        required_subjects: ["Physics", "Chemistry", "Maths", "Computer Science (optional)"],
+        min_pct_class12: 75,
+        stream: "Science (PCM)",
+        extra: "Start building mini-projects and learn Git/GitHub in school.",
+      } satisfies SubjectStageMetadata,
+    },
+    {
+      stage_order: 2,
+      stage_type: "exams",
+      title: "JEE / BITSAT / Other Entrance Tests",
+      subtitle: "Admission to CS-heavy colleges",
+      description:
+        "Top software engineering paths usually start with a B.Tech in CSE, IT, or related branches. JEE Main, JEE Advanced, BITSAT, VITEEE, and similar tests open the strongest programs.",
+      metadata: {
+        exams: [
+          {
+            name: "JEE Main",
+            conducting_body: "National Testing Agency (NTA)",
+            frequency: "Twice a year (January & April)",
+            age_limit: "No upper age limit (must have passed Class 12)",
+            attempts: "3 consecutive attempts",
+            application_url: "https://jeemain.nta.nic.in",
+          },
+          {
+            name: "JEE Advanced",
+            conducting_body: "IITs (rotating host IIT)",
+            frequency: "Once a year (June)",
+            age_limit: "No upper age limit",
+            attempts: "2 consecutive years",
+            application_url: "https://jeeadv.ac.in",
+          },
+          {
+            name: "BITSAT",
+            conducting_body: "BITS Pilani",
+            frequency: "Twice a year",
+            age_limit: "Must have passed Class 12 (PCM)",
+            attempts: "No limit (subject to age)",
+            application_url: "https://www.bitsadmission.com",
+          },
+          {
+            name: "VITEEE",
+            conducting_body: "Vellore Institute of Technology",
+            frequency: "Once a year",
+            age_limit: "Must have passed Class 12",
+            attempts: "No limit",
+            application_url: "https://viteee.vit.ac.in",
+          },
+        ],
+      } satisfies ExamStageMetadata,
+    },
+    {
+      stage_order: 3,
+      stage_type: "colleges",
+      title: "Top CS Colleges",
+      subtitle: "IITs, BITS, IIITs, NITs",
+      description:
+        "The best software jobs usually start from strong CS programs at IITs, BITS, IIITs, and top NITs. Build side projects and internships early to stand out in placements.",
+      metadata: {
+        top_colleges: ["IIT Bombay", "IIT Delhi", "BITS Pilani", "IIIT Hyderabad", "NIT Trichy"],
+        degree_awarded: "B.Tech / B.E. in Computer Science & Engineering",
+      } satisfies CollegeStageMetadata,
+    },
+    {
+      stage_order: 4,
+      stage_type: "skills",
+      title: "DSA, Systems, Web / Mobile",
+      subtitle: "Ship real products",
+      description:
+        "Core software skills include data structures and algorithms, programming languages, operating systems, databases, APIs, cloud basics, and at least one strong project area such as web, mobile, or AI engineering.",
+      metadata: {
+        skills: ["Data structures & algorithms", "JavaScript / TypeScript", "Python / Java / C++", "Databases", "System design basics", "Git & GitHub", "Cloud fundamentals"],
+        internship_focus: ["Product companies", "Startups", "Open-source contributions", "Hackathons"],
+      } satisfies SkillsStageMetadata,
+    },
+    {
+      stage_order: 5,
+      stage_type: "career_outlook",
+      title: "Product Engineer → Tech Lead",
+      subtitle: "From intern to architect",
+      description:
+        "Entry software roles in India often start around ₹8–20 LPA at product firms, with faster growth in AI, backend, and platform engineering. Strong engineers can grow into staff, lead, or architect roles and later move into startups or global teams.",
+      metadata: {
+        highlights: [
+          "Entry product-company packages: ₹8–20 LPA",
+          "Mid-career tech leads can cross ₹25–40 LPA",
+          "High-growth areas: AI/ML, backend, cloud, security, and full-stack",
+          "Alternative path: build your own startup or move into open-source and research",
+        ],
+        entry_salary_inr: 800000,
+        mid_career_salary_inr: 2500000,
+        top_role_paths: ["SDE", "Tech Lead", "Staff Engineer", "Architect", "Founder"],
+      } satisfies TextHighlightStageMetadata,
+    },
+  ],
+  "data-scientist": [
+      {
+        stage_order: 1,
+        stage_type: "subjects",
+        title: "Strong Maths & Programming",
+        subtitle: "Statistics, linear algebra, and Python",
+        description:
+          "Focus on probability, statistics, linear algebra, and Python programming. Build small projects using pandas and scikit-learn in school to stand out.",
+        metadata: {
+          required_subjects: ["Maths", "Computer Science", "Statistics"],
+          min_pct_class12: 70,
+          stream: "Science / Commerce (with Maths)",
+        } satisfies SubjectStageMetadata,
+      },
+      {
+        stage_order: 2,
+        stage_type: "training",
+        title: "Projects & Competitions",
+        subtitle: "Kaggle, internships, open-source",
+        description:
+          "Build datasets, enter Kaggle competitions, and contribute to open-source. Practical projects demonstrate skills better than theory alone.",
+        metadata: {
+          highlights: ["Kaggle projects", "Mini ML pipeline projects", "Internships / research opportunities"],
+        } satisfies TextHighlightStageMetadata,
+      },
+      {
+        stage_order: 3,
+        stage_type: "career_outlook",
+        title: "Data roles in product teams",
+        subtitle: "ML engineer, data analyst, research",
+        description:
+          "Entry-level roles include data analyst and ML engineer. Advance via specialised Masters or on-job experience in model deployment and feature engineering.",
+        metadata: {
+          highlights: ["Entry salary: ₹6–15 LPA", "High demand in fintech, e-commerce, and healthtech"],
+        } satisfies TextHighlightStageMetadata,
+      },
+    ],
+    "mechanical-engineer": [
+      {
+        stage_order: 1,
+        stage_type: "subjects",
+        title: "Class 11–12 PCM foundation",
+        subtitle: "Mechanics and materials",
+        description: "Strong physics and maths prepare you for mechanical engineering fundamentals.",
+        metadata: { required_subjects: ["Physics", "Maths"], min_pct_class12: 65, stream: "Science (PCM)" } satisfies SubjectStageMetadata,
+      },
+      {
+        stage_order: 2,
+        stage_type: "colleges",
+        title: "B.Tech / B.E. in Mechanical",
+        subtitle: "IITs, NITs, state colleges",
+        description: "Pursue a B.Tech in Mechanical or Manufacturing for design and production roles.",
+        metadata: { top_colleges: ["IIT Bombay", "IIT Madras", "NIT Trichy"] } satisfies CollegeStageMetadata,
+      },
+      {
+        stage_order: 3,
+        stage_type: "skills",
+        title: "CAD, manufacturing, thermodynamics",
+        subtitle: "Practice with real parts",
+        description: "Learn SolidWorks, AutoCAD, manufacturing processes, and internship-based shop-floor exposure.",
+        metadata: { skills: ["CAD", "Manufacturing", "Thermodynamics"] } satisfies SkillsStageMetadata,
+      },
+    ],
+    "electrical-engineer": [
+      {
+        stage_order: 1,
+        stage_type: "subjects",
+        title: "Circuit fundamentals",
+        subtitle: "Electronics & signals",
+        description: "Start with basic circuit theory and electronics in school labs and projects.",
+        metadata: { required_subjects: ["Physics", "Maths"], min_pct_class12: 65, stream: "Science (PCM)" } satisfies SubjectStageMetadata,
+      },
+      {
+        stage_order: 2,
+        stage_type: "exams",
+        title: "JEE / Engineering entrances",
+        subtitle: "Entry to good colleges",
+        description: "Crack JEE Main / Advanced or state engineering entrances for top EE programs.",
+        metadata: { exams: [] } satisfies ExamStageMetadata,
+      },
+      {
+        stage_order: 3,
+        stage_type: "career_outlook",
+        title: "Power, embedded, and automation roles",
+        subtitle: "Industry & R&D",
+        description: "Work on power systems, embedded firmware, control systems, and automation in manufacturing.",
+        metadata: { highlights: ["Entry roles in utilities, manufacturing, and automation"] } satisfies TextHighlightStageMetadata,
+      },
+    ],
+    "civil-engineer": [
+      {
+        stage_order: 1,
+        stage_type: "subjects",
+        title: "Maths & physical sciences",
+        subtitle: "Statics and material science",
+        description: "Strong maths and physics help with structural analysis and materials.",
+        metadata: { required_subjects: ["Maths", "Physics"], min_pct_class12: 60, stream: "Science (PCM)" } satisfies SubjectStageMetadata,
+      },
+      {
+        stage_order: 2,
+        stage_type: "colleges",
+        title: "B.Tech / BE in Civil",
+        subtitle: "Construction, design, consultancy",
+        description: "Top civil programs and internships on construction sites build practical skills.",
+        metadata: { top_colleges: ["IIT Roorkee", "IIT Kharagpur", "IIT Madras"] } satisfies CollegeStageMetadata,
+      },
+      {
+        stage_order: 3,
+        stage_type: "career_outlook",
+        title: "Site engineer to project manager",
+        subtitle: "Construction & infrastructure",
+        description: "Roles include site engineer, design engineer, and project manager across infrastructure projects.",
+        metadata: { highlights: ["Large infrastructure demand in India"] } satisfies TextHighlightStageMetadata,
+      },
+    ],
+    architect: [
+      {
+        stage_order: 1,
+        stage_type: "subjects",
+        title: "Class 11–12 with PCM",
+        subtitle: "Sketch, model, observe",
+        description:
+          "Architecture aspirants need Physics and Maths in Class 12 (PCM preferred). Strong freehand sketching, model-making, and a passion for built-environment design are the foundation. Maintain 50%+ aggregate for most B.Arch programs.",
+        metadata: {
+          required_subjects: ["Physics", "Maths", "English"],
+          min_pct_class12: 50,
+          stream: "Science (PCM) preferred; Arts with Maths accepted",
+          extra: "Start a portfolio: sketches, mood boards, site visits, photographs.",
+        } satisfies SubjectStageMetadata,
+      },
+      {
+        stage_order: 2,
+        stage_type: "exams",
+        title: "NATA / JEE Paper 2",
+        subtitle: "Drawing + aesthetic sensitivity test",
+        description:
+          "NATA (National Aptitude Test in Architecture) by CoA is the primary entry to B.Arch. JEE Main Paper 2 (B.Arch / B.Planning) is accepted by IITs, NITs, and SPA. Both test drawing, mathematics, and aesthetic sensitivity.",
+        metadata: {
+          exams: [
+            {
+              name: "NATA",
+              conducting_body: "Council of Architecture (CoA)",
+              frequency: "Twice a year (April & July)",
+              age_limit: "Must have passed Class 12 (no upper limit)",
+              attempts: "No limit",
+              application_url: "https://www.nata.in",
+            },
+            {
+              name: "JEE Main Paper 2 (B.Arch / B.Planning)",
+              conducting_body: "National Testing Agency (NTA)",
+              frequency: "Twice a year (January & April)",
+              age_limit: "No upper age limit",
+              attempts: "3 consecutive attempts",
+              application_url: "https://jeemain.nta.nic.in",
+            },
+          ],
+        } satisfies ExamStageMetadata,
+      },
+      {
+        stage_order: 3,
+        stage_type: "colleges",
+        title: "B.Arch at SPA / CEPT / IIT",
+        subtitle: "Top architecture schools",
+        description:
+          "Top B.Arch programs: IIT Kharagpur / Roorkee (via JEE Advanced), SPA Delhi (JEE Main Paper 2), CEPT Ahmedabad, JJ School of Architecture, and Sir JJ College of Architecture. Admissions via JoSAA / state counselling.",
+        metadata: {
+          top_colleges: ["IIT Kharagpur", "IIT Roorkee", "SPA Delhi", "CEPT Ahmedabad", "Sir JJ College Mumbai"],
+          duration_years: 5,
+          degree_awarded: "B.Arch (Bachelor of Architecture)",
+          accreditation: "Council of Architecture (CoA)",
+        } satisfies CollegeStageMetadata,
+      },
+      {
+        stage_order: 4,
+        stage_type: "training",
+        title: "5-Year B.Arch + Internship",
+        subtitle: "Studios, site visits, thesis project",
+        description:
+          "B.Arch is a 5-year professional degree. The final year includes a mandatory 6-month architectural internship under a registered architect. Most students also pursue parallel portfolio projects and summer studios at firms like Morphogenesis, Hafeez Contractor, or Sanjay Puri Architects.",
+        metadata: {
+          highlights: [
+            "5-year professional B.Arch with annual design studios",
+            "6-month mandatory internship under a registered architect in Year 5",
+            "Parallel skills: Revit, AutoCAD, SketchUp, Rhino, Lumion, Adobe Suite",
+            "Council of Architecture (CoA) registration is mandatory to practise",
+          ],
+          duration_years: 5,
+          internship_months: 6,
+          accrediting_body: "Council of Architecture (CoA)",
+        } satisfies TextHighlightStageMetadata,
+      },
+      {
+        stage_order: 5,
+        stage_type: "skills",
+        title: "BIM, Sustainability, Urban Design",
+        subtitle: "The architect's toolkit",
+        description:
+        "Master BIM tools (Revit, ArchiCAD), 3D modelling (Rhino, SketchUp), rendering (Lumion, V-Ray), and sustainability principles (LEED, GRIHA ratings). Strong portfolios often blend hand sketching with parametric design.",
+        metadata: {
+          skills: ["Revit / ArchiCAD", "AutoCAD", "SketchUp", "Rhino + Grasshopper", "Lumion / V-Ray", "Adobe Suite", "Hand sketching", "Sustainable design (LEED / GRIHA)"],
+          competitions: ["Archiprix", "HUDCO Design Awards", "IIA Awards"],
+        } satisfies SkillsStageMetadata,
+      },
+      {
+        stage_order: 6,
+        stage_type: "career_outlook",
+        title: "Junior Architect → Principal",
+        subtitle: "Firms, practice, urban design",
+        description:
+        "Junior architects earn ₹4–7 LPA at top firms. Mid-career roles (Senior Architect, Project Lead) cross ₹12–22 LPA. Principals at firms like Morphogenesis, Sanjay Puri, and Christopher Benninger Architects earn ₹40 LPA – ₹1 Cr+. After 5–7 years, many launch independent practices.",
+        metadata: {
+          highlights: [
+            "Entry salary: ₹4–7 LPA at top firms",
+            "Mid-career architect: ₹12–22 LPA",
+            "Principal / Partner: ₹40 LPA – ₹1 Cr+",
+            "Independent practice: launch after 5–7 years of studio experience",
+          ],
+          entry_salary_inr: 400000,
+          mid_career_salary_inr: 1200000,
+          top_firms: ["Morphogenesis", "Sanjay Puri Architects", "Hafeez Contractor", "Christopher Benninger"],
+        } satisfies TextHighlightStageMetadata,
+      },
+    ],
+    teacher: [
+      {
+        stage_order: 1,
+        stage_type: "subjects",
+        title: "Class 11–12: any stream",
+        subtitle: "Strong subject foundation",
+        description:
+          "Future teachers need deep knowledge of at least one subject (PCM, PCB, Commerce, English, Social Science). Aim for 50%+ aggregate in Class 12 with strong communication and writing skills. Reading habits and public speaking are crucial.",
+        metadata: {
+          required_subjects: ["English"],
+          min_pct_class12: 50,
+          stream: "Any stream (Arts / Science / Commerce)",
+          extra: "Build a habit of explaining concepts to peers and younger students.",
+        } satisfies SubjectStageMetadata,
+      },
+      {
+        stage_order: 2,
+        stage_type: "exams",
+        title: "CTET / State TETs / UGC NET",
+        subtitle: "Eligibility for central/state schools + lectureship",
+        description:
+          "CTET (Central Teacher Eligibility Test) is mandatory for KVS / NVS / Army schools. State TETs are required for state government schools. UGC NET is required to be an assistant professor at universities and colleges.",
+        metadata: {
+          exams: [
+            {
+              name: "CTET (Central Teacher Eligibility Test)",
+              conducting_body: "Central Board of Secondary Education (CBSE)",
+              frequency: "Twice a year",
+              age_limit: "18+ (no upper age limit)",
+              attempts: "No limit",
+              application_url: "https://ctet.nic.in",
+            },
+            {
+              name: "State TETs (UPTET, REET, HTET, MAHATET etc.)",
+              conducting_body: "Respective State Education Boards",
+              frequency: "Once a year (per state)",
+              age_limit: "18 to 35 (relaxed for reserved categories)",
+              attempts: "Varies by state",
+              application_url: "https://www.cbse.gov.in",
+            },
+            {
+              name: "UGC NET (National Eligibility Test)",
+              conducting_body: "National Testing Agency (NTA)",
+              frequency: "Twice a year",
+              age_limit: "No upper age limit (JRF — 30 years)",
+              attempts: "No limit",
+              application_url: "https://ugcnet.nta.ac.in",
+            },
+          ],
+        } satisfies ExamStageMetadata,
+      },
+      {
+        stage_order: 3,
+        stage_type: "colleges",
+        title: "B.Ed + Subject Specialisation",
+        subtitle: "B.Ed from RIEs / state universities",
+        description:
+          "B.Ed is a 2-year professional degree required for teaching at upper-primary and secondary levels. Regional Institutes of Education (RIEs) by NCERT, IASE, and university departments offer the most respected programs.",
+        metadata: {
+          top_colleges: ["RIE Ajmer", "RIE Bhopal", "RIE Bhubaneswar", "RIE Mysuru", "IASE Delhi"],
+          degree_awarded: "B.Ed (Bachelor of Education)",
+          duration_months: 24,
+        } satisfies CollegeStageMetadata,
+      },
+      {
+        stage_order: 4,
+        stage_type: "training",
+        title: "B.Ed Internships + Demo Lessons",
+        subtitle: "Classroom practice",
+        description:
+          "B.Ed includes a 4-month school internship with demo lessons, peer observation, and teaching practice. Many programs also include ICT in education, inclusive education, and pedagogy workshops.",
+        metadata: {
+          highlights: [
+            "4-month school internship with demo lessons and peer feedback",
+            "Practice in inclusive education, ICT, and pedagogy",
+            "Most B.Ed programs require 80%+ attendance",
+            "Choose a subject specialisation (PCM / PCB / English / Social Studies)",
+          ],
+          internship_months: 4,
+          total_duration_months: 24,
+        } satisfies TextHighlightStageMetadata,
+      },
+      {
+        stage_order: 5,
+        stage_type: "skills",
+        title: "Pedagogy, EdTech, Assessment",
+        subtitle: "Modern teaching toolkit",
+        description:
+          "Modern teachers blend pedagogy, classroom technology, formative assessment, and learner psychology. Build skills in lesson planning, curriculum design, classroom management, and tools like Google Classroom, Kahoot, and Canvas.",
+        metadata: {
+          skills: ["Lesson planning", "Classroom management", "Curriculum design", "Google Classroom", "Kahoot / Quizizz", "Differentiated instruction", "Inclusive education"],
+          certifications: ["CTET", "State TETs", "NPTEL pedagogy courses"],
+        } satisfies SkillsStageMetadata,
+      },
+      {
+      stage_order: 6,
+      stage_type: "career_outlook",
+      title: "PRT → TGT → PGT → Vice Principal",
+      subtitle: "KVS, NVS, state, private, edtech",
+      description:
+        "Starting salaries: ₹3–4.5 LPA at private schools; ₹6–9 LPA at KVS / NVS / state government schools. Edtech platforms (Byju's, Unacademy, Vedantu) offer ₹8–25 LPA for subject experts. After 8–10 years, become Vice Principal / Principal (₹15–30 LPA).",
+        metadata: {
+          highlights: [
+            "Private schools: ₹3–4.5 LPA starting",
+            "Government (KVS / NVS / state): ₹6–9 LPA starting with pension",
+            "Edtech (Unacademy, Vedantu): ₹8–25 LPA for subject experts",
+            "Mid-career Vice Principal: ₹15–30 LPA",
+          ],
+          entry_salary_inr: 300000,
+          mid_career_salary_inr: 900000,
+          top_employers: ["KVS", "NVS", "State Education Departments", "Delhi Public School", "Amity International", "Unacademy", "Vedantu", "Byju's"],
+        } satisfies TextHighlightStageMetadata,
+      },
+    ],
+    nurse: [
+      {
+        stage_order: 1,
+        stage_type: "subjects",
+        title: "Class 11–12 PCB with 50%+",
+        subtitle: "Biology, chemistry, English",
+        description:
+          "B.Sc Nursing requires Physics, Chemistry, Biology, and English in Class 12 with at least 50% aggregate (45% for reserved categories). Strong fundamentals in human anatomy and physiology are essential.",
+        metadata: {
+          required_subjects: ["Physics", "Chemistry", "Biology", "English"],
+          min_pct_class12: 50,
+          stream: "Science (PCB)",
+          extra: "Must be 17+ by 31 December of the admission year.",
+        } satisfies SubjectStageMetadata,
+      },
+      {
+        stage_order: 2,
+        stage_type: "exams",
+        title: "NEET-UG (B.Sc Nursing) / State CETs",
+        subtitle: "Entry to top nursing colleges",
+        description:
+          "NEET-UG is the primary entrance for B.Sc Nursing at AIIMS, JIPMER, and most government colleges. Many state CETs (e.g., Maharashtra CET, KCET) also admit to state-run nursing programs. AIIMS NORCET recruits nursing officers.",
+        metadata: {
+          exams: [
+            {
+              name: "NEET-UG (for B.Sc Nursing)",
+              conducting_body: "National Testing Agency (NTA)",
+              frequency: "Once a year (May)",
+              age_limit: "17 to 25 (relaxed for reserved categories)",
+              attempts: "Unlimited",
+              application_url: "https://neet.nta.nic.in",
+            },
+            {
+              name: "AIIMS NORCET (Nursing Officer Recruitment)",
+              conducting_body: "AIIMS New Delhi",
+              frequency: "Once a year",
+              age_limit: "18 to 30 (relaxed for reserved categories)",
+              attempts: "No limit",
+              application_url: "https://www.aiims.edu",
+            },
+            {
+              name: "State CETs (e.g., KCET, MAH-CET)",
+              conducting_body: "Respective State Examination Boards",
+              frequency: "Once a year",
+              age_limit: "17+",
+              attempts: "Varies by state",
+              application_url: "https://cetcell.maharashtra.gov.in",
+            },
+          ],
+        } satisfies ExamStageMetadata,
+      },
+      {
+        stage_order: 3,
+        stage_type: "colleges",
+        title: "B.Sc Nursing at AIIMS / CMC / Top Govt Colleges",
+        subtitle: "Premier nursing institutes",
+        description:
+          "AIIMS (across 7+ campuses), Christian Medical College Vellore, JIPMER Puducherry, AFMC Pune, and RAK College of Nursing are the top B.Sc Nursing programs. INC (Indian Nursing Council) recognition is mandatory for all programs.",
+        metadata: {
+          top_colleges: ["AIIMS Delhi Nursing", "CMC Vellore Nursing", "JIPMER Puducherry Nursing", "AFMC Pune", "RAK College of Nursing Delhi"],
+          duration_years: 4,
+          degree_awarded: "B.Sc Nursing (4 years including 6-month internship)",
+          accrediting_body: "Indian Nursing Council (INC)",
+        } satisfies CollegeStageMetadata,
+      },
+      {
+        stage_order: 4,
+        stage_type: "training",
+        title: "4-Year B.Sc Nursing + Clinical Rotations",
+        subtitle: "Medical, surgical, paediatric postings",
+        description:
+          "B.Sc Nursing is a 4-year professional degree with mandatory clinical rotations in medical, surgical, paediatric, psychiatric, and community health settings. The final 6 months are a compulsory rotating internship.",
+        metadata: {
+          highlights: [
+            "4-year B.Sc Nursing with structured clinical rotations",
+            "Mandatory internship in multi-specialty hospital settings",
+            "Register with State Nursing Council after graduation",
+            "Indian Nursing Council (INC) recognition mandatory for all programs",
+          ],
+          duration_years: 4,
+          internship_months: 6,
+          accrediting_body: "Indian Nursing Council (INC)",
+        } satisfies TextHighlightStageMetadata,
+      },
+      {
+        stage_order: 5,
+        stage_type: "skills",
+        title: "Critical Care, ICU, Specialisations",
+        subtitle: "Clinical certifications",
+        description:
+          "Post-B.Sc, nurses can specialise in critical care (ICU, CCU), operation theatre, paediatrics, oncology, neonatal care, or psychiatric nursing. Certifications like Advanced Cardiac Life Support (ACLS) and trauma care boost employability.",
+        metadata: {
+          skills: ["Patient assessment", "IV / Cannulation", "Medication administration", "Critical care", "ACLS / BLS", "Wound care", "Patient counselling"],
+          certifications: ["ACLS", "BLS", "Trauma Nursing Core Course (TNCC)", "Neonatal Resuscitation"],
+        } satisfies SkillsStageMetadata,
+      },
+      {
+        stage_order: 6,
+      stage_type: "career_outlook",
+      title: "Staff Nurse → Nurse Educator → Nursing Director",
+      subtitle: "Hospitals, ICU, abroad, teaching",
+      description:
+        "Staff nurses earn ₹3–5 LPA at entry level, ₹6–12 LPA at senior / ICU level. Government nurses enjoy pay-level-7 7th CPC scale. Abroad (UK NHS, Gulf, US) offers ₹25–80 LPA. After 5–8 years, become nurse educator / nursing superintendent.",
+        metadata: {
+          highlights: [
+            "Staff nurse entry: ₹3–5 LPA",
+            "Senior / ICU nurse: ₹6–12 LPA",
+            "Government (state / central): 7th CPC pay + allowances",
+            "Abroad (Gulf / UK / US): ₹25–80 LPA",
+            "Nurse educator / Nursing Director: ₹15–30 LPA",
+          ],
+          entry_salary_inr: 300000,
+          mid_career_salary_inr: 800000,
+          top_employers: ["AIIMS", "Apollo Hospitals", "Fortis Healthcare", "Max Healthcare", "Manipal Hospitals", "NHS UK", "KFSH Saudi Arabia"],
+        } satisfies TextHighlightStageMetadata,
+      },
+    ],
+    "product-manager": [
+      {
+        stage_order: 1,
+        stage_type: "skills",
+        title: "User research & prioritisation",
+        subtitle: "Communication & data",
+        description: "Learn to run user interviews, prioritise features, and interpret metrics.",
+        metadata: { skills: ["User research", "Roadmapping", "Metrics analysis"] } satisfies SkillsStageMetadata,
+      },
+      {
+        stage_order: 2,
+        stage_type: "training",
+        title: "Build cross-functional experience",
+        subtitle: "Internships & side projects",
+        description: "Work on product projects, internships in startups, or PM apprenticeships to learn end-to-end shipping.",
+        metadata: { highlights: ["Internships at startups", "Build product case studies"] } satisfies TextHighlightStageMetadata,
+      },
+      {
+        stage_order: 3,
+        stage_type: "career_outlook",
+        title: "Associate PM → PM → Group PM",
+        subtitle: "Grow into leadership",
+        description: "PMs can move into leadership roles or found startups; product experience is highly transferable.",
+        metadata: { highlights: ["Cross-functional leadership opportunities"] } satisfies TextHighlightStageMetadata,
+      },
+    ],
+    "ux-designer": [
+      {
+        stage_order: 1,
+        stage_type: "skills",
+        title: "User research & prototyping",
+        subtitle: "Research-led design",
+        description: "Master wireframing, prototyping, and user testing with tools like Figma and Sketch.",
+        metadata: { skills: ["Figma", "Prototyping", "User testing"] } satisfies SkillsStageMetadata,
+      },
+      {
+        stage_order: 2,
+        stage_type: "training",
+        title: "Portfolio & internships",
+        subtitle: "Showcase product thinking",
+        description: "Build case studies that show research, design decisions, and outcomes.",
+        metadata: { highlights: ["Product design internships", "UX case studies"] } satisfies TextHighlightStageMetadata,
+      },
+      {
+        stage_order: 3,
+        stage_type: "career_outlook",
+        title: "Product Designer → Design Lead",
+        subtitle: "Move into strategy",
+        description: "Start as a UX designer and move into product design leadership or specialise in research or motion design.",
+        metadata: { highlights: ["High demand in startups and product companies"] } satisfies TextHighlightStageMetadata,
+      },
+    ],
+    dentist: [
+      {
+        stage_order: 1,
+        stage_type: "subjects",
+        title: "Class 11–12 PCB with 50%+",
+        subtitle: "Biology, chemistry, English",
+        description:
+          "BDS aspirants must take Physics, Chemistry, and Biology in Class 12 with 50%+ aggregate (40% for reserved categories). Strong fundamentals in human anatomy, physiology, and organic chemistry are essential for NEET and BDS coursework.",
+        metadata: {
+          required_subjects: ["Physics", "Chemistry", "Biology", "English"],
+          min_pct_class12: 50,
+          stream: "Science (PCB)",
+          extra: "Must be 17+ by 31 December of the admission year.",
+        } satisfies SubjectStageMetadata,
+      },
+      {
+        stage_order: 2,
+        stage_type: "exams",
+        title: "NEET-UG",
+        subtitle: "Single gateway for BDS / MDS",
+        description:
+          "NEET-UG is the only entrance for BDS across India. NEET-MDS is the entry to Master of Dental Surgery (MDS) specialisations after BDS. Top BDS colleges have NEET cut-offs between 400–650 (out of 720) for general category.",
+        metadata: {
+          exams: [
+            {
+              name: "NEET-UG",
+              conducting_body: "National Testing Agency (NTA)",
+              frequency: "Once a year (May)",
+              age_limit: "17 to 25 (relaxed for reserved categories)",
+              attempts: "Unlimited",
+              application_url: "https://neet.nta.nic.in",
+            },
+            {
+              name: "NEET-MDS",
+              conducting_body: "National Board of Examinations (NBE)",
+              frequency: "Once a year",
+              age_limit: "No upper age limit",
+              attempts: "No limit",
+              application_url: "https://natboard.edu.in",
+            },
+          ],
+        } satisfies ExamStageMetadata,
+      },
+      {
+        stage_order: 3,
+        stage_type: "colleges",
+        title: "BDS at Top Dental Colleges",
+        subtitle: "Government + private dental schools",
+        description:
+          "Top BDS programs: Maulana Azad Institute of Dental Sciences (Delhi), Government Dental College Mumbai, Faculty of Dental Sciences KGMU, Manipal College of Dental Sciences, and Tamil Nadu Government Dental College. Both AIQ (15%) and state quota (85%) counselling apply.",
+        metadata: {
+          top_colleges: ["Maulana Azad Institute of Dental Sciences Delhi", "Government Dental College Mumbai", "Manipal College of Dental Sciences", "Faculty of Dental Sciences KGMU Lucknow"],
+          duration_years: 5,
+          degree_awarded: "BDS (Bachelor of Dental Surgery)",
+          accrediting_body: "Dental Council of India (DCI)",
+        } satisfies CollegeStageMetadata,
+      },
+      {
+        stage_order: 4,
+        stage_type: "training",
+        title: "5-Year BDS + Rotating Internship",
+        subtitle: "Clinical training + 1-year internship",
+        description:
+          "BDS is a 5-year program (4 years academics + 1-year rotating internship). It covers prosthodontics, orthodontics, periodontics, oral surgery, and community dentistry. After internship, register with the State Dental Council to practise.",
+        metadata: {
+          highlights: [
+            "4 years academics + 1 year compulsory rotating internship",
+            "Covers prosthodontics, orthodontics, oral surgery, periodontics",
+            "Register with State Dental Council (DCI) after internship",
+            "NEET-MDS for MDS specialisation (3 years)",
+          ],
+          total_years: 5,
+          internship_months: 12,
+          degree_awarded: "BDS",
+          accrediting_body: "Dental Council of India (DCI)",
+        } satisfies TextHighlightStageMetadata,
+      },
+      {
+        stage_order: 5,
+        stage_type: "skills",
+        title: "Endodontics, Orthodontics, Implants",
+        subtitle: "Specialisations & clinical certifications",
+        description:
+          "After BDS, MDS (3 years) specialisations include Orthodontics, Endodontics, Prosthodontics, Periodontics, Oral & Maxillofacial Surgery, Pedodontics, and Public Health Dentistry. Implantology and cosmetic dentistry certifications boost private practice revenue.",
+        metadata: {
+          skills: ["Endodontics (RCT)", "Orthodontics", "Implantology", "Periodontics", "Oral surgery", "Cosmetic dentistry", "Radiographic interpretation"],
+          certifications: ["Fellowship in Implantology", "Invisalign certification", "Laser dentistry"],
+        } satisfies SkillsStageMetadata,
+      },
+      {
+        stage_order: 6,
+        stage_type: "career_outlook",
+        title: "Dental Surgeon → MDS → Practice Owner",
+        subtitle: "Clinics, hospitals, MDS, abroad",
+        description:
+          "BDS graduates earn ₹4–8 LPA at hospital jobs; private practice can earn ₹10–30 LPA+ depending on patient flow. MDS specialists earn ₹12–25 LPA in hospitals and ₹30–80 LPA in their own clinics. Abroad (UK, Australia, Middle East) offers ₹50 LPA – ₹2 Cr for dentists with foreign licensing.",
+        metadata: {
+          highlights: [
+            "Hospital-employed BDS: ₹4–8 LPA",
+            "Private dental clinic: ₹10–30 LPA+ (scales with patient volume)",
+            "MDS specialist: ₹12–25 LPA at hospital; ₹30–80 LPA in practice",
+            "Abroad (UK NHS, Australia, UAE): ₹50 LPA – ₹2 Cr with licensing",
+          ],
+          entry_salary_inr: 400000,
+          mid_career_salary_inr: 1200000,
+          top_employers: ["Apollo Hospitals", "Fortis Healthcare", "Clove Dental", "Manipal Hospitals", "Own private practice"],
+        } satisfies TextHighlightStageMetadata,
+      },
+    ],
+  };
 
 export const getStagesForCareer = (careerSlug: Career["slug"]): Stage[] => {
   return STAGES_BY_CAREER[careerSlug] ?? [];

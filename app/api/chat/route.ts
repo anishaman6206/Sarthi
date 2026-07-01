@@ -61,6 +61,11 @@ const SYSTEM_PROMPT_TEMPLATE =
   "Current context: career={career}, current roadmap stage={stage}, student profile={profile}. " +
   "Stay in character. Never mention you are an AI or break the fourth wall.";
 
+const GREETING_SYSTEM_PROMPT =
+  "You are Sarthi, a kind expert career counselor for Indian school students (classes 8-12). " +
+  "The user has only sent a short greeting — reply briefly (<= 10 words) and politely ask how you can help. " +
+  "Do not inject or mention any previously visited career or roadmap context unless the user asks about it.";
+
 const MOCK_RESPONSES: Record<string, string> = {
   "commercial-pilot":
     "Great question! For a Commercial Pilot in India, the key thing is DGCA Class 2 Medical is mandatory before you even start flying school. If you wear glasses, you may still be eligible - DGCA allows vision correctable to 6/6 in each eye. Want me to walk you through the DGCA Class 1 procedure?",
@@ -78,6 +83,30 @@ const MOCK_RESPONSES: Record<string, string> = {
     "The dream of many - UPSC Civil Services! There's no age shortcut: you can attempt between 21 and 32 (General), with relaxations for OBC/SC/ST. The exam has 3 stages - Prelims, Mains, Interview. Most aspirants take 2-3 attempts. Want a study plan?",
   "chartered-accountant":
     "CA is a fantastic, stable career! The path is Foundation (after Class 10 or 12), then Inter, then Final - about 4-5 years total if you clear in one go. Articleship under a practicing CA is mandatory for 3 years. Want tips on clearing Inter in first attempt?",
+  "data-scientist":
+    "Data Science is a practical, project-first field. Start with Python, statistics, and build small ML projects. Enter Kaggle competitions, and focus on end-to-end pipelines: cleaning, features, models, and deployment. Want a starter project?",
+  "mechanical-engineer":
+    "Mechanical engineering is design and production-led. Focus on strong physics and CAD skills; join workshops and build mechanical projects. Want a 3-month hands-on project list?",
+  "electrical-engineer":
+    "Electrical engineering spans power systems, electronics, and embedded systems. Start with circuits and small embedded projects, then pursue a strong B.Tech. Want suggestions for starter electronics projects?",
+  "civil-engineer":
+    "Civil engineering builds the world around us. Learn surveying, materials, and site practices through internships; aim for strong internships during B.Tech. Want a checklist for site internships?",
+  architect:
+    "Architecture blends art and engineering. Build a strong portfolio with sketches, models, and CAD work. Prepare for NATA and studio reviews early. Want portfolio tips?",
+  teacher:
+    "Teaching is one of the highest-impact careers. Start building communication skills, subject mastery, and lesson plans; consider a B.Ed or CTET for school roles. Want a sample lesson plan template?",
+  nurse:
+    "Nursing is a practical, caring profession with strong demand. Look for B.Sc Nursing or diploma programmes and hospital internships; clinical experience is the core. Want steps to prepare for nursing college applications?",
+  "product-manager":
+    "Product Management is cross-functional: learn user research, prioritisation, and basic analytics. Build case studies by shipping small products or features. Want an early roadmap to become an Associate PM?",
+  "ux-designer":
+    "UX Design rewards portfolios showing process — research, sketches, prototypes, and outcomes. Learn Figma and do product teardown case studies. Want a starter UX case study template?",
+  dentist:
+    "Dentistry requires clinical training (BDS) and internships. Prepare via NEET-based admissions and focus on hands-on clinical rotations during college. Want an overview of BDS entry and internships?",
+  lawyer:
+    "Great choice! For law in India, CLAT is the main gateway to the NLUs, and AILET opens NLU Delhi. Build strong reading, writing, and argument skills early - mooting and internships matter a lot. Want a CLAT prep roadmap?",
+  "software-engineer":
+    "Software engineering is a strong path! Aim for PCM in school, then a strong B.Tech CSE or IT college. Build DSA, projects, GitHub, and internships early - those matter as much as the degree. Want a project roadmap?",
   default:
     "Hey there! I'm Sarthi, your career guide. Pick a career on the home page and I'll help you with subjects, exams, colleges, and scholarships. You can also tell me about yourself using the Personalize button. What do you want to become, my friend?",
 };
@@ -202,6 +231,20 @@ export async function POST(req: NextRequest): Promise<Response> {
   const profile = ctx.profile && typeof ctx.profile === "object" ? ctx.profile : undefined;
   const systemPrompt = buildSystemPrompt(careerSlug, stageTitle, profile);
 
+  // Detect very short greeting-like messages and use a compact system prompt
+  const lastMsg = messages[messages.length - 1];
+  const isGreeting = (() => {
+    if (!lastMsg || lastMsg.role !== "user") return false;
+    const t = lastMsg.content.trim().toLowerCase();
+    // common short greetings
+    if (/^\s*(hi|hii|hey|hello|hey there|good morning|good afternoon|good evening)\b[!.?\s]*$/i.test(t)) return true;
+    // extremely short single-word messages treated as greeting (e.g., "hii")
+    if (/^[a-z]{1,6}$/.test(t)) return true;
+    return false;
+  })();
+
+  const effectiveSystemPrompt = isGreeting ? GREETING_SYSTEM_PROMPT : systemPrompt;
+
   const useOpenAI = isOpenAIAvailable();
 
   const stream = new ReadableStream<Uint8Array>({
@@ -218,16 +261,17 @@ export async function POST(req: NextRequest): Promise<Response> {
       };
 
       if (!useOpenAI) {
-        // Mock fallback
-        const fallback =
-          (careerSlug && MOCK_RESPONSES[careerSlug]) || MOCK_RESPONSES.default;
+        // Mock fallback — use short greeting response when appropriate
+        const fallback = isGreeting
+          ? "Hi! How can I help you today?"
+          : (careerSlug && MOCK_RESPONSES[careerSlug]) || MOCK_RESPONSES.default;
         mockStream(fallback, { enqueue, close });
         return;
       }
 
       // Real OpenAI
       const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-      void openaiStream(client, systemPrompt, messages, controller);
+      void openaiStream(client, effectiveSystemPrompt, messages, controller);
     },
   });
 

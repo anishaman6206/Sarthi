@@ -18,6 +18,8 @@ export interface UseChatStreamResult {
   input: string;
   setInput: (next: string) => void;
   send: (text?: string) => Promise<void>;
+  clearMessages: () => void;
+  restoreMessages: (msgs: Message[]) => void;
   isStreaming: boolean;
   error: string | undefined;
 }
@@ -104,6 +106,24 @@ export function useChatStream(context: ChatContext): UseChatStreamResult {
     if (messages.length === 0) return;
     saveMessages(keyRef.current, messages);
   }, [messages]);
+
+  const clearMessages = useCallback((): void => {
+    setMessages([]);
+    try {
+      if (isBrowser()) window.localStorage.removeItem(keyRef.current);
+    } catch {
+      /* ignore */
+    }
+  }, []);
+
+  const restoreMessages = useCallback((msgs: Message[]): void => {
+    setMessages(msgs ?? []);
+    try {
+      if (isBrowser()) saveMessages(keyRef.current, msgs ?? []);
+    } catch {
+      /* ignore */
+    }
+  }, []);
 
   const send = useCallback(
     async (text?: string): Promise<void> => {
@@ -211,8 +231,56 @@ export function useChatStream(context: ChatContext): UseChatStreamResult {
     [context.careerSlug, context.stageTitle, context.profile, input, isStreaming, messages],
   );
 
-  return { messages, input, setInput, send, isStreaming, error };
+  return { messages, input, setInput, send, clearMessages, restoreMessages, isStreaming, error };
 }
 
 // Exported for tests / advanced consumers — not used by the UI panel.
 export const __test__ = { splitIntoChunks, storageKey };
+
+/** Remove all saved chat messages across all contexts (localStorage keys).
+ * Useful for a global "Clear all history" action in the UI.
+ */
+export const clearAllChats = (): void => {
+  if (!isBrowser()) return;
+  try {
+    const keys: string[] = [];
+    for (let i = 0; i < window.localStorage.length; i += 1) {
+      const k = window.localStorage.key(i);
+      if (k && k.startsWith(STORAGE_PREFIX)) keys.push(k);
+    }
+    for (const k of keys) window.localStorage.removeItem(k);
+  } catch {
+    /* ignore */
+  }
+};
+
+/** Return a backup of all saved chat messages keyed by storage key. */
+export const backupAllChats = (): Record<string, Message[]> => {
+  const out: Record<string, Message[]> = {};
+  if (!isBrowser()) return out;
+  try {
+    for (let i = 0; i < window.localStorage.length; i += 1) {
+      const k = window.localStorage.key(i);
+      if (k && k.startsWith(STORAGE_PREFIX)) {
+        out[k] = loadMessages(k);
+      }
+    }
+  } catch {
+    /* ignore */
+  }
+  return out;
+};
+
+/** Restore a previously-taken backup produced by `backupAllChats`. */
+export const restoreAllChats = (backup: Record<string, Message[]>): void => {
+  if (!isBrowser()) return;
+  try {
+    for (const k of Object.keys(backup)) {
+      window.localStorage.setItem(k, JSON.stringify(backup[k] ?? []));
+    }
+  } catch {
+    /* ignore */
+  }
+};
+
+export const getStorageKey = storageKey;
